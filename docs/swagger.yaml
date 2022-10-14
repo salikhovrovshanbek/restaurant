@@ -1,0 +1,452 @@
+definitions:
+  server.MenyuJson:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      price:
+        type: integer
+    type: object
+  server.Product:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  server.ShopStruct:
+    properties:
+      drink_id:
+        type: string
+      food_id:
+        type: string
+      salad_id:
+        type: string
+      table_id:
+        type: string
+    type: object
+  server.Table:
+    properties:
+      buys:
+        type: boolean
+      id:
+        type: string
+      number:
+        type: integer
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  title: Postgres Crud API
+  version: "1.0"
+paths:
+  /admin/count_sum:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Count sum
+        in: query
+        name: number
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Count Sum
+      tags:
+      - admin
+  /admin/count_users:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Count User
+        in: query
+        name: number
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Count User
+      tags:
+      - admin
+  /admin/products:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/server.Product'
+            type: array
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Product  list
+      tags:
+      - admin
+  /admin/update_product:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Update Product
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Update Product
+      tags:
+      - admin
+  /chek:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: table id
+        in: query
+        name: table_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Chek
+      tags:
+      - others
+  /delete_basket:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: ' Delete Basket'
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/server.ShopStruct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Delete Basket
+      tags:
+      - others
+  /ingredient:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Ingredient
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/server.Product'
+            type: array
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Ingredient
+      tags:
+      - others
+  /menu/drinks:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/server.MenyuJson'
+            type: array
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Drinks Menu
+      tags:
+      - menu
+  /menu/food1:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/server.MenyuJson'
+            type: array
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: National Food
+      tags:
+      - menu
+  /menu/food2:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/server.MenyuJson'
+            type: array
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: European Food
+      tags:
+      - menu
+  /menu/food3:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/server.MenyuJson'
+            type: array
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Turkish Food
+      tags:
+      - menu
+  /menu/salad:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/server.MenyuJson'
+            type: array
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Salad Menu
+      tags:
+      - menu
+  /open_chek:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: table id
+        in: query
+        name: table_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Open Chek
+      tags:
+      - others
+  /set:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Set
+        in: query
+        name: sum
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/server.MenyuJson'
+              type: array
+            type: array
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Combo
+      tags:
+      - others
+  /shop:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Shop
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/server.ShopStruct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Shop
+      tags:
+      - others
+  /shop_combo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: ShopCombo
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/server.ShopStruct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Shop Combo
+      tags:
+      - others
+  /tables:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/server.Table'
+            type: array
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Table List
+      tags:
+      - others
+swagger: "2.0"
